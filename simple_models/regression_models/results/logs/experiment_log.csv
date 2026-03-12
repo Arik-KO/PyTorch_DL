@@ -1,0 +1,2 @@
+experiment,dataset,model_type,degree_M,lambda,n_epochs,batch_size,lr,train_mse,val_mse,val_rmse,val_mae,test_mse
+linear_regression,california_housing,OLS,1,,100,32,0.01,0.5272,0.5333,0.7303,0.5365,
