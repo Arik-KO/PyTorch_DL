@@ -1,9 +1,16 @@
 import os
+import torch
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "data", "processed")
+DATA_DIR = 'data/processed/'
+
 
 LEARNING_RATE = 1e-4
 LAMBDA = 1e-3
 BATCH_SIZE = 64
-EPOCHS = 20
+EPOCHS = 100
+RANDOM_SEED = 42
+DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+
+if __name__ == "__main__":
+    print(DEVICE)

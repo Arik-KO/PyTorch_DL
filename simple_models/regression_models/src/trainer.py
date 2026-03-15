@@ -41,7 +41,6 @@ class Trainer:
 
                 val_predictions = self.model(x_batch)
                 val_loss = self.criterion(val_predictions, y_batch)
-
                 total_loss += val_loss.item()
 
         return total_loss/len(dataloader) #avg loss returned
