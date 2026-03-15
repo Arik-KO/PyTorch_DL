@@ -1,4 +1,4 @@
-# Deep Learning Regression Architectures
+# Deep Learning Regression Implementation Using PyTorch
 
 
-This repo contains various regressions implementation on California Housing Dataset using PyTorch framework.
+This repo contains regressions implementation e.g.- (ridge regression, polynomial regression, linear regression) on California Housing Dataset using PyTorch framework.
