@@ -2,28 +2,21 @@ from config import *
 import torch
 import numpy as np
 import pandas as pd
-from torch.utils.data import DataLoader
-from src.dataset import ProjectData
 from src.model import LinearRegression
 from utilis.helper import load_model, visualize_performance
 import os
 
 
+
+
 def main():
     torch.manual_seed(RANDOM_SEED)
     np.random.seed(RANDOM_SEED)
-    X_test  = np.load(DATA_DIR + 'X_test.npy')
-    y_test  = np.load(DATA_DIR + 'y_test.npy')
+    from poly_train import get_poly_data
 
-
-    X_test_t = torch.tensor(X_test, dtype = torch.float32)
-    y_test_t  = torch.tensor(y_test,  dtype=torch.float32).unsqueeze(1)
-
-    test_dataset = ProjectData(X_test_t, y_test_t)
-    test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False, num_workers=0)
-
+    train_loader, val_loader, test_loader, X_train_t, X_val_t, X_test_t, y_train_t, y_val_t, y_test_t = get_poly_data()
     model = LinearRegression(X_test_t.shape[1])
-    model = load_model(model, 'results/models/linear_reg.pth')
+    model = load_model(model, f'results/models/poly_reg_{DEGREE}.pth')
     model = model.to(DEVICE)
 
     all_pred = []
@@ -41,7 +34,7 @@ def main():
     y_hat = np.concatenate(all_pred)
     gnd_truth = np.concatenate(true_pred)
 
-    mse = np.mean( (y_hat - gnd_truth) ** 2 )
+    mse = np.mean((y_hat - gnd_truth) ** 2)
     rmse = np.sqrt(mse)
     mae = np.mean(np.abs(y_hat - gnd_truth))
 
@@ -49,33 +42,31 @@ def main():
     print(f"root mean squared error: {rmse}")
     print(f"mean absolute error: {mae}")
 
-    visualize_performance(gnd_truth, y_hat, 'linear_reg')
+    visualize_performance(gnd_truth, y_hat, f'poly_reg_{DEGREE}')
 
     result_row = {
-        'model_name':'Linear_Regression',
-        'Lambda (L2)' : 0,
-        'Epochs' : EPOCHS,
-        'MSE' : round(mse, 4),
-        'RMSE' : round(rmse, 4),
-        'MAE' : round(mae, 4),
-        'Optimizer': 'SGD',
+        'model_name': 'Polynomial_Regression',
+        'Lambda (L2)': LAMBDA,
+        'Epochs': EPOCHS,
+        'MSE': round(mse, 4),
+        'RMSE': round(rmse, 4),
+        'MAE': round(mae, 4),
+        'Optimizer': 'Adam',
         'Batch_size': BATCH_SIZE,
         'Random_Seed': RANDOM_SEED,
-        'Learning Rate': LEARNING_RATE
+        'Learning Rate': LEARNING_RATE,
+        'Degree' : DEGREE
     }
 
     result_df = pd.DataFrame([result_row])
     log_path = 'results/logs/experiment_log.csv'
 
     if os.path.exists(log_path):
-        result_df.to_csv(log_path, mode = 'a', header = False, index = False )
+        result_df.to_csv(log_path, mode='a', header=False, index=False)
     else:
-        result_df.to_csv(log_path, mode = 'w', header = True, index = False)
+        result_df.to_csv(log_path, mode='w', header=True, index=False)
+
 
 if __name__ == "__main__":
     main()
-
-
-
-
 

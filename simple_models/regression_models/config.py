@@ -4,6 +4,7 @@ import torch
 DATA_DIR = 'data/processed/'
 
 
+DEGREE = 4
 LEARNING_RATE = 1e-4
 LAMBDA = 1e-3
 BATCH_SIZE = 64
