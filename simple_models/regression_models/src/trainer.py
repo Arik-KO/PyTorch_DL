@@ -1,5 +1,6 @@
 from torch.utils.data import DataLoader
 import torch
+import numpy as np
 
 class Trainer:
     def __init__(self, model, criterion, optimizer, device):
@@ -44,4 +45,6 @@ class Trainer:
                 total_loss += val_loss.item()
 
         return total_loss/len(dataloader) #avg loss returned
+
+
 

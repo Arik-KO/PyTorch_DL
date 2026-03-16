@@ -11,7 +11,7 @@ def plot_losses(train_loss:list, val_loss:list, fig_name:str):
     plt.legend()
     plt.grid(True, alpha = 0.5)
     plt.tight_layout()
-    plt.savefig(f"../results/plots/loss_graph_{fig_name}.png ", dpi=150, bbox_inches='tight')
+    plt.savefig(f"results/plots/loss_graph_{fig_name}.jpeg", dpi=150, bbox_inches='tight')
     plt.show()
 
 

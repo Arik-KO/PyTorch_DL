@@ -6,6 +6,7 @@ from torch.utils.data import DataLoader
 from src.dataset import ProjectData
 from src.trainer import Trainer
 from src.model import LinearRegression
+from utilis.helper import save_model, plot_losses
 
 def main():
     torch.manual_seed(RANDOM_SEED)
@@ -46,6 +47,10 @@ def main():
         trainer.val_losses.append(val_loss)
 
         print(f"for epoch {epoch}, the training loss is: {train_loss:.4f}, and the validation loss is: {val_loss:.4f}")
+
+    plot_losses(trainer.train_losses, trainer.val_losses, "Linear_reg_without_L2")
+    save_model(model, 'results/models/linear_regression_without_L2.pth')
+
 
 if __name__ == "__main__":
     main()
