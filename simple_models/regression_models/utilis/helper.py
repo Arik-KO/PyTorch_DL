@@ -49,5 +49,5 @@ def save_model(model, path:str):
 
 
 def load_model(model, path:str):
-    model.load_state_dict(torch.load(path), weights_only=True)
+    model.load_state_dict(torch.load(path))
     return model
