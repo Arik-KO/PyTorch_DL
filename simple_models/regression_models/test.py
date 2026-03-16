@@ -1,10 +1,11 @@
 from config import *
 import torch
 import numpy as np
+import pandas as pd
 from torch.utils.data import DataLoader
 from src.dataset import ProjectData
 from src.model import LinearRegression
-from utilis.helper import load_model
+from utilis.helper import load_model, visualize_performance
 import os
 
 
@@ -47,6 +48,29 @@ def main():
     print(f"mean squared error: {mse}")
     print(f"root mean squared error: {rmse}")
     print(f"mean absolute error: {mae}")
+
+    visualize_performance(gnd_truth, y_hat, 'linear_reg_without_l2')
+
+    result_row = {
+        'model_name':'Linear_Regression',
+        'Lambda (L2)' : 0,
+        'Epochs' : EPOCHS,
+        'MSE' : round(mse, 4),
+        'RMSE' : round(rmse, 4),
+        'MAE' : round(mae, 4),
+        'Optimizer': 'Adam',
+        'Batch_size': BATCH_SIZE,
+        'Random_Seed': RANDOM_SEED,
+        'Learning Rate': LEARNING_RATE
+    }
+
+    result_df = pd.DataFrame([result_row])
+    log_path = 'results/logs/experiment_log.csv'
+
+    if os.path.exists(log_path):
+        result_df.to_csv(log_path, mode = 'a', header = False, index = False )
+    else:
+        result_df.to_csv(log_path, mode = 'w', header = True, index = True)
 
 if __name__ == "__main__":
     main()

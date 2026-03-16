@@ -52,5 +52,6 @@ def main():
     save_model(model, 'results/models/linear_regression_without_L2.pth')
 
 
+
 if __name__ == "__main__":
     main()

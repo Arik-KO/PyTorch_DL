@@ -1,0 +1,2 @@
+,model_name,Lambda (L2),Epochs,MSE,RMSE,MAE,Optimizer,Batch_size,Random_Seed,Learning Rate
+0,Linear_Regression,0,100,0.57,0.755,0.5332,Adam,64,42,0.0001

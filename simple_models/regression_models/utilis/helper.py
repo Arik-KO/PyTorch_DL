@@ -15,7 +15,7 @@ def plot_losses(train_loss:list, val_loss:list, fig_name:str):
     plt.show()
 
 
-def visualize_performance(y_train:list, y_hat:list, fig_name:str)-> None:
+def visualize_performance(y_train, y_hat, fig_name):
     plt.figure(figsize = (10,6), dpi =150)
     plt.scatter(y_train, y_hat, color = 'steelblue',alpha = 0.6, s=8)
     lims = [min(y_train.min(), y_hat.min()),
@@ -31,14 +31,18 @@ def visualize_performance(y_train:list, y_hat:list, fig_name:str)-> None:
     residuals = y_hat - y_train
     plt.figure(figsize=(10,6), dpi = 150)
     plt.hist(residuals,bins =50, color = 'coral', alpha = 0.6)
+    plt.axvline(0, color='black', linewidth=1.5, label='Zero residual')
+    plt.axvline(residuals.mean(), color='red', linestyle='--',
+                label=f'Mean residual = {residuals.mean():.3f}')
     plt.xlabel('prediction_error')
     plt.ylabel('Frequency')
+    plt.legend()
     plt.grid(True, alpha = 0.5)
     plt.tight_layout()
-    plt.save_fig(f"results/plots/histogram_{fig_name}.jpeg")
+    plt.savefig(f"results/plots/histogram_{fig_name}.jpeg")
     plt.show()
 
-    
+
 def save_model(model, path:str):
     torch.save(model.state_dict(), path)
     print(f"Model saved to {path}")
