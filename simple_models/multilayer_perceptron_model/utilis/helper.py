@@ -11,7 +11,7 @@ def plot_loss(train_loss, val_loss, fig_name, lw = 2):
     plt.xlabel('Epochs')
     plt.ylabel('Calculated Loss')
     plt.tight_layout()
-    #plt.savefig(f"results/plots/loss_graph_{fig_name}.png", dpi = 200, bbox_inches = 'tight')
+    plt.savefig(f"results/plots/loss_graph_{fig_name}.png", dpi = 200, bbox_inches = 'tight')
     plt.show()
 
 
