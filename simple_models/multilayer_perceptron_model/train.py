@@ -16,10 +16,10 @@ def main():
     y_val = np.load(DATA_DIR + 'y_val.npy')
 
     #convet to tensor
-    X_train_t = torch.tensor(X_train)
-    X_val_t = torch.tensor(X_val)
-    y_train_t = torch.tensor(y_train)
-    y_val_t = torch.tensor(y_val)
+    X_train_t = torch.tensor(X_train, dtype = torch.float32)
+    X_val_t = torch.tensor(X_val, dtype = torch.float32)
+    y_train_t = torch.tensor(y_train, dtype = torch.float32).unsqueeze(1)
+    y_val_t = torch.tensor(y_val, dtype = torch.float32).unsqueeze(1)
 
     # utilize dataset class from pytorch
     training_dataset = HousingData(X_train_t, y_train_t)
@@ -42,7 +42,7 @@ def main():
         val_loss = trainer.validation_function(val_loader)
         trainer.val_losses.append(val_loss)
 
-        print(f"for epoch {epoch}|{EPOCHS}, the training loss is: {train_loss:.4f}, and "
+        print(f"for epoch {epoch+1}|{EPOCHS}, the training loss is: {train_loss:.4f}, and "
               f"the validation loss is: {val_loss:.4f}")
 
     plot_loss(trainer.train_losses, trainer.val_losses, MODEL_NAME)
