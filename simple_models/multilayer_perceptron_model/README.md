@@ -9,4 +9,4 @@
 
 ---
 
-* config scripts contains all the hyper-parameters by changing their values the model can be modified and performance can be evaluated
+* config script contains all the hyper-parameters by changing their values the model can be modified and performance can be evaluated
