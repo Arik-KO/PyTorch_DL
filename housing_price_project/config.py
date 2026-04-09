@@ -1,6 +1,6 @@
 import torch
 
-
+HIDDEN_LAYERS = [64,32,16]
 RANDOM_STATE = 42
 LAMBDA = 0.0
 DROPOUT = 0.0
