@@ -12,7 +12,7 @@ def plot_losses(train_loss:list, val_loss:list, fig_name:str):
     plt.grid(True, alpha = 0.5)
     plt.tight_layout()
     plt.savefig(f"results/plots/loss_graph_{fig_name}.jpeg", dpi=150, bbox_inches='tight')
-    plt.show()
+
 
 
 def visualize_performance(y_train, y_hat, fig_name):
@@ -26,7 +26,7 @@ def visualize_performance(y_train, y_hat, fig_name):
     plt.grid(True, alpha = 0.5)
     plt.tight_layout()
     plt.savefig(f"results/plots/evaluation_{fig_name}.jpeg", dpi =150, bbox_inches = 'tight')
-    plt.show()
+
 
     residuals = y_hat - y_train
     plt.figure(figsize=(10,6), dpi = 150)
@@ -40,7 +40,7 @@ def visualize_performance(y_train, y_hat, fig_name):
     plt.grid(True, alpha = 0.5)
     plt.tight_layout()
     plt.savefig(f"results/plots/histogram_{fig_name}.jpeg")
-    plt.show()
+
 
 
 def save_model(model, path:str):
