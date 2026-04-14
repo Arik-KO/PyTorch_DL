@@ -26,8 +26,8 @@ df = pd.get_dummies(stroke_data, columns = ['gender', 'ever_married', 'work_type
 
 
 # print(df.isnull().sum())
-y = df['stroke']
-X = df.drop(columns = ['stroke'])
+y = df['stroke'].values
+X = df.drop(columns = ['stroke']).values
 
 
 # print(df.dtypes)
@@ -36,3 +36,4 @@ X = df.drop(columns = ['stroke'])
 
 correlation_matrix = df.corr()[['stroke']].drop('stroke')
 corr_visualization(correlation_matrix, True, 'strok_data_correlation_heatmap', True)
+
