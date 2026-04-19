@@ -1,1 +1,7 @@
+
+
 RANDOM_SEED = 42
+hidden_layers = [54,32,16]
+EPOCHS = 20
+LAMBDA = 0.0
+DROPOUT = 0.0
