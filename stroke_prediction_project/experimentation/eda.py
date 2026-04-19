@@ -37,3 +37,6 @@ X = df.drop(columns = ['stroke']).values
 correlation_matrix = df.corr()[['stroke']].drop('stroke')
 corr_visualization(correlation_matrix, True, 'strok_data_correlation_heatmap', True)
 
+# np.save('../data/processed/x_data.npy', X)
+# np.save('../data/processed/y_data.npy', y)
+# print(np.load('../data/processed/x_data.npy').shape == X.shape)
