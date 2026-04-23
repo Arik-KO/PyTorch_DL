@@ -1,6 +1,6 @@
 import torch
 
-def trainer():
+class Trainer():
     def __init__(self, model, device, criterion, optimizer):
 
         self.model = model
@@ -27,7 +27,7 @@ def trainer():
 
         return train_loss/len(train_loader)
 
-    def validation_function(self, val_loader)
+    def validation_function(self, val_loader):
         total_val_loss = 0
         self.model.eval()
 
